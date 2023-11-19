@@ -1,0 +1,46 @@
+# Graph is a square(NxN) matrix in this variation of the a-star algorithm!!
+
+# f value -> g + h value - vertex with lowest f value is prioritized in traversal(visiting)
+#   --- it means that the current vertex could be(estimation/guess) the closest to the end vertex by air+ground ---
+# g value -> weights of all predecessor vertices + the weight of the current vertex
+# h value -> distance from current vertex to the end vertex (air distance - ignoring ground) (heuristic function)
+# predecessor -> visited neighbour vertex where that visited vertex's g value
+#   combined with the new g value of the current vertex is lower than the old g value of the current vertex
+#   --- They are used for being followed(bread crumbs) from end to start - similar to how the linked list works ---
+
+
+def a_star(graph, start_vertex, end_vertex):
+    def manhattan_distance(a_vertex, b_vertex):
+        return x distance + y distance from a_vertex to b_vertex
+
+
+    distances = NxN matrix representing neighbours and their f value, g value, h value and predecessor vertex
+        where each element = [infinity, infinity, infinity, none]
+
+    unvisited = empty list representing unvisited vertexes
+    visited = empty list representing visited vertexes
+
+    distances[start_vertex.row][start_vertex.column] = [manhattan_distance(start_vertex, end_vertex), 0, manhattan_distance(start_vertex, end_vertex), None]
+    add start_vertex to unvisited
+    while unvisited is not empty:
+        current_vertex = vertex in unvisited with the smallest f value
+        remove current_vertex from unvisited
+        add current_vertex to visited
+
+        if current_vertex is end_vertex:
+            break from the loop
+
+        for each neighbour of current_vertex in the graph:
+            neighbour_current_g_value = current_vertex_g_value + the weight of the neighbour
+
+            if neighbour is in unvisited or visited and neighbour_current_g_value is less than neighbour's g value:
+                set neighbour's g value to neighbour_current_g_value
+                set neighbour's predecessor to current_vertex
+            else if neighbour is not in unvisited and neighbour is not in visited:
+                add neighbour to unvisited
+                set neighbour's predecessor to current_vertex
+                set neighbour's h value to manhattan_distance(neighbour, end_vertex)
+                set neighbour's g value to neighbour_current_g_value
+                set neighbour's f value to neighbour_current_g_value + neighbour's h value
+
+    return distances

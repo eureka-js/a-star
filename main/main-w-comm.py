@@ -13,7 +13,7 @@ def a_star(graph, start_v, end_v):
     #   --- They are used for being followed(bread crumbs) from end to start - similar to how the linked list works ---
 
     # manhattan_distance -> heuristic function
-    #   -> how many x's and y's it takes to traverse from the current point to the end point
+    #   -> how many x's and y's (not weights) it takes to traverse from the current point to the end point
     #   --- Better for this matrix representation ---
     def manhattan_distance(a_vertex, b_vertex):
         return abs(a_vertex.col - b_vertex.col) + abs(a_vertex.row - b_vertex.row)
@@ -25,7 +25,7 @@ def a_star(graph, start_v, end_v):
 
     row_len, col_len = len(graph.vertices), len(graph.vertices[0])
 
-    # dist = [f value, g value, h value, current value] for each vertex
+    # dist = [f value, g value, h value, predecessor vertex] for each vertex
     # set the values to infinite for all vertices and set predecessor to None
     # Note: starting vertex will not have infinite values so that the algorithm can start from him
     dist = [[[float('inf'), float('inf'), float('inf'), None] for _ in range(col_len)] for _ in range(row_len)]
