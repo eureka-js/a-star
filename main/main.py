@@ -10,8 +10,8 @@ def a_star(graph, start_v, end_v):
     def euclidean_distance(a_vertex, b_vertex):
         return sqrt(abs(a_vertex.col - b_vertex.col) + abs(a_vertex.row - b_vertex.row))
 
-    row_len, col_len = len(graph.vertices), len(graph.vertices[0])
 
+    row_len, col_len = len(graph.vertices), len(graph.vertices[0])
     dist = [[[float('inf'), float('inf'), float('inf'), None] for _ in range(col_len)] for _ in range(row_len)]
 
     unvisited = []
@@ -33,8 +33,9 @@ def a_star(graph, start_v, end_v):
             cur_neigh_g_val = cur_vert_g_val + neigh.weight
 
             if neigh in (unvisited, visited) and cur_neigh_g_val < dist[neigh.row][neigh.col][1]:
-                dist[neigh.row][neigh.col][1] = cur_neigh_g_val
                 dist[neigh.row][neigh.col][3] = cur_v
+                dist[neigh.row][neigh.col][1] = cur_neigh_g_val
+                dist[neigh.row][neigh.col][0] = cur_neigh_g_val + dist[neigh.row][neigh.col][2]
             elif neigh not in unvisited and neigh not in visited:
                 unvisited.append(neigh)
                 dist[neigh.row][neigh.col][3] = cur_v
@@ -80,7 +81,7 @@ def print_alg_values(distances):
 
 
 def main():
-    graph = Graph(Scheme.num2)
+    graph = Graph(Scheme.num1)
     print_alg_values(a_star(graph, graph.get_vertex('R'), graph.get_vertex('C')))
     print_shortest_path(graph, graph.get_vertex('R'), graph.get_vertex('C'))
     graph.print_graph()

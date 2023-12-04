@@ -57,10 +57,11 @@ def a_star(graph, start_v, end_v):
             if neigh in (unvisited, visited) and cur_neigh_g_val < dist[neigh.row][neigh.col][1]:
                 # If the neighbour is already in found(in unvisited) or visited
                 # and his newly calculated g value is less than his old g value
-                # then update(replace old with new) his g value and make his predecessor the current vertex
+                # then update(replace old with new) his g value,f value, and make his predecessor the current vertex
 
-                dist[neigh.row][neigh.col][1] = cur_neigh_g_val
                 dist[neigh.row][neigh.col][3] = cur_v
+                dist[neigh.row][neigh.col][1] = cur_neigh_g_val
+                dist[neigh.row][neigh.col][0] = cur_neigh_g_val + dist[neigh.row][neigh.col][2]
             elif neigh not in unvisited and neigh not in visited:
                 # If the neighbour wasn't found, then add him to the unvisited list to be visited
                 # Calculate all his values (f value, g value, h value) and set his predecessor

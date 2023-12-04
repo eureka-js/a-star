@@ -35,6 +35,7 @@ def a_star(graph, start_vertex, end_vertex):
 
             if neighbour is in unvisited or visited and neighbour_current_g_value is less than neighbour's g value:
                 set neighbour's g value to neighbour_current_g_value
+                set neighbour's f value to neighbour_current_g_value + neighbour's h value
                 set neighbour's predecessor to current_vertex
             else if neighbour is not in unvisited and neighbour is not in visited:
                 add neighbour to unvisited
