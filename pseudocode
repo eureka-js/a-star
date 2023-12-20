@@ -1,4 +1,4 @@
-# Graph is a square(NxN) matrix in this variation of the a-star algorithm!!
+# Graph is a rectangular(NxM) matrix in this variation of the a-star algorithm!!
 
 # f value -> g + h value - vertex with lowest f value is prioritized in traversal(visiting)
 #   --- it means that the current vertex could be(estimation/guess) the closest to the end vertex by air+ground ---
@@ -33,7 +33,7 @@ def a_star(graph, start_vertex, end_vertex):
         for each neighbour of current_vertex in the graph:
             neighbour_current_g_value = current_vertex_g_value + the weight of the neighbour
 
-            if neighbour is in unvisited or visited and neighbour_current_g_value is less than neighbour's g value:
+            if neighbour is in (unvisited or visited) and neighbour_current_g_value is less than neighbour's g value:
                 set neighbour's g value to neighbour_current_g_value
                 set neighbour's f value to neighbour_current_g_value + neighbour's h value
                 set neighbour's predecessor to current_vertex
